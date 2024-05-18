@@ -88,6 +88,7 @@ Here are the principles I will try to follow during this excercise:
 
 According to the requirements, I have prepared the following plan:
 
+- [ ] Fix type errors in the current code
 - [ ] Write unit tests for current code to gain a better understanding of the requirements and prepare for the refactoring
 - [ ] Refactor the code according to the principles above
 - [ ] Create a CRUD UI for the inventory using React

@@ -141,7 +141,7 @@ describe("Gilded Rose inventory", () => {
       it("does not change `Sulfuras, Hand of Ragnaros` `sellIn` value", () => {
         const name = "Sulfuras, Hand of Ragnaros";
         const sellIn = 10;
-        const quality = 20;
+        const quality = 80;
 
         const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
 
@@ -150,10 +150,10 @@ describe("Gilded Rose inventory", () => {
         expect(gildedRose.items[0].sellIn).toBe(sellIn);
       });
 
-      it("does not change `Sulfuras, Hand of Ragnaros` `quality` value", () => {
+      it("does not change `Sulfuras, Hand of Ragnaros` `quality` value, it should always be 80", () => {
         const name = "Sulfuras, Hand of Ragnaros";
         const sellIn = 10;
-        const quality = 20;
+        const quality = 80;
 
         const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
 

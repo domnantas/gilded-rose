@@ -1,8 +1,18 @@
 # Gilded rose
 
+This is a project based on the [Gilded Rose kata](https://github.com/emilybache/GildedRose-Refactoring-Kata). The core technologies chosen are
+
+- Vite
+- TypeScript
+- React
+- Vitest
+- ESLint
+
+This provides a solid, performant, type-safe foundation, yet remains simple and easy to use.
+
 <details>
   <summary>Requirements</summary>
-
+  <h2>Gilded Rose Requirements Specification</h2>
   Hi and welcome to team Gilded Rose. As you know, we are a small inn with a prime location in a
   prominent city ran by a friendly innkeeper named Allison. We also buy and sell only the finest goods.
   Unfortunately, our goods are constantly degrading in `Quality` as they approach their sell by date.
@@ -40,4 +50,46 @@
   legendary item and as such its `Quality` is `80` and it never alters.
 </details>
 
+## Planning
 
+The first step is understanding the requirements, current state of the code, and setting the goals appropriately. There is an inventory system which tracks item quality and days left until item should be sold. There are special items that have different `quality` and `sellIn` behaviour. Current code works correctly, but it is quite confusing and difficult to modify. Our goal is to _refactor_  the existing code, add a new item type, and test the code to make sure it works correctly.
+
+Here are the principles I will try to follow during this excercise:
+
+- <details>
+  <summary>Readability</summary>
+
+  To me readable code means _other_ developers can understand what the code does in short amount of _time_. This does not mean _less lines of code_, I find often the opposite is true. The main signs of readable code are thoughtful naming, easy navigation, and single responsibility principle.
+  </details>
+
+- <details>
+  <summary>Maintainability</summary>
+
+  Maintainable code is easy to change. It should not be difficult to add new features or change existing ones. Tests should bring confidence that your changes do not break existing functionality.
+  </details>
+
+- <details>
+  <summary>Performance</summary>
+
+  Premature optimization and over-optimization with diminishing returns are common pitfalls. However, taking some precautions to make sure code performs well can improve user experience.
+  </details>
+
+- <details>
+  <summary>Testability</summary>
+
+  It is easier to test code which is modularized and has clearly defined inputs and outputs. It should be trivial to inject or mock all necessary dependencies.
+  </details>
+
+- <details>
+  <summary>Reusability</summary>
+
+  This might be a hot take, but I often see the DRY principle followed blindly, which causes too many [unnecessary abstractions](https://overreacted.io/goodbye-clean-code/). In my opinion there should be a balance between code reusability and _readability_.
+  </details>
+
+According to the requirements, I have prepared the following plan:
+
+- [ ] Write unit tests for current code to gain a better understanding of the requirements and prepare for the refactoring
+- [ ] Refactor the code according to the principles above
+- [ ] Create a CRUD UI for the inventory using React
+- [ ] Add e2e tests
+- [ ] Deploy the project

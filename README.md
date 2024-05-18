@@ -94,3 +94,18 @@ According to the requirements, I have prepared the following plan:
 - [ ] Create a CRUD UI for the inventory using React
 - [ ] Add e2e tests
 - [ ] Deploy the project
+
+## Progress notes
+
+I have written basic unit tests for all cases described in the requirements. The test coverage is `100%` in all categories, but I don't think the tests are bulletproof. For example, if I change the `Backstage pass` logic like this:
+
+```diff
+- if (item.sellIn < 6)
++ if (item.sellIn < 7)
+```
+
+The tests will still pass. This is a good usecase for `it.each` pattern.
+
+Additionally, there is a lot of repetition in each test. I believe the tests are still going to change a bit, so I will address this issue later.
+
+And finally, all current tests use a single item. In theory, I should repeat each test with multiple items to ensure every feature works with multiple items, but that will result in extremely verbose test file.

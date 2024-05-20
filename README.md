@@ -97,6 +97,8 @@ According to the requirements, I have prepared the following plan:
 
 ## Progress notes
 
+### Unit tests
+
 I have written basic unit tests for all cases described in the requirements. The test coverage is `100%` in all categories, but I don't think the tests are bulletproof. For example, if I change the `Backstage pass` logic like this:
 
 ```diff
@@ -139,3 +141,7 @@ However, I have ultimately decided against this idea. Sure, there's less lines o
 ---
 
 I have tested each type of items with various `sellIn` values and utilized `it.each` to cover all `Backstage passes` cases, which results in 46 tests, which is a bit of an overkill. In reality, it is necessary to balance available time with coverage and test performance. In this case, let's say we have unlimited time and this is a mission critical system that needs to be tested really thoroughly.
+
+### Refactoring
+
+With the unit tests complete, it is time to refactor the code. First, I have added comments on each state modification to understand what each code branch does. I have confirmed this by adding `console.log` next to each comment and seeing which tests have triggered it.

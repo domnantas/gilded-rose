@@ -145,3 +145,5 @@ I have tested each type of items with various `sellIn` values and utilized `it.e
 ### Refactoring
 
 With the unit tests complete, it is time to refactor the code. First, I have added comments on each state modification to understand what each code branch does. I have confirmed this by adding `console.log` next to each comment and seeing which tests have triggered it.
+
+The glaring issue with the code is that the logic is deeply nested and difficult to understand. Additionally, it relies on modifying the `quality` multiple times to reach the desired value. I have simplified the `if` conditions so it is easier follow the code.

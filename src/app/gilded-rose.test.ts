@@ -31,7 +31,7 @@ describe("Gilded Rose inventory", () => {
     });
 
     describe("updateQuality", () => {
-      it("reduces item `sellIn` by 1", () => {
+      it("reduces regular item `sellIn` by 1", () => {
         const name = "Rune platebody";
         const sellIn = 10;
         const quality = 20;
@@ -113,6 +113,18 @@ describe("Gilded Rose inventory", () => {
         gildedRose.updateQuality();
 
         expect(gildedRose.items[0].quality).toBeGreaterThanOrEqual(0);
+      });
+
+      it("reduces `Aged Brie` item `sellIn` by 1", () => {
+        const name = "Aged Brie";
+        const sellIn = 10;
+        const quality = 20;
+
+        const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
+
+        gildedRose.updateQuality();
+
+        expect(gildedRose.items[0].sellIn).toBe(sellIn - 1);
       });
 
       it("increases `Aged Brie` quality by 1 when `sellIn` is greater than 0", () => {
@@ -257,6 +269,18 @@ describe("Gilded Rose inventory", () => {
         gildedRose.updateQuality();
 
         expect(gildedRose.items[0].quality).toBe(quality);
+      });
+
+      it("reduces `Backstage passes to a TAFKAL80ETC concert` item `sellIn` by 1", () => {
+        const name = "Backstage passes to a TAFKAL80ETC concert";
+        const sellIn = 10;
+        const quality = 20;
+
+        const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
+
+        gildedRose.updateQuality();
+
+        expect(gildedRose.items[0].sellIn).toBe(sellIn - 1);
       });
 
       it.each([

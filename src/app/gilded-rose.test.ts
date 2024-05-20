@@ -30,7 +30,7 @@ describe("Gilded Rose inventory", () => {
       expect(gildedRose.items[0].quality).toBe(quality);
     });
 
-    describe("updateQuality", () => {
+    describe("advanceDay", () => {
       it("reduces regular item `sellIn` by 1", () => {
         const name = "Rune platebody";
         const sellIn = 10;
@@ -38,7 +38,7 @@ describe("Gilded Rose inventory", () => {
 
         const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
 
-        gildedRose.updateQuality();
+        gildedRose.advanceDay();
 
         expect(gildedRose.items[0].sellIn).toBe(sellIn - 1);
       });
@@ -50,7 +50,7 @@ describe("Gilded Rose inventory", () => {
 
         const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
 
-        gildedRose.updateQuality();
+        gildedRose.advanceDay();
 
         expect(gildedRose.items[0].quality).toBe(quality - 1);
       });
@@ -62,7 +62,7 @@ describe("Gilded Rose inventory", () => {
 
         const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
 
-        gildedRose.updateQuality();
+        gildedRose.advanceDay();
 
         expect(gildedRose.items[0].quality).toBe(quality - 2);
       });
@@ -74,7 +74,7 @@ describe("Gilded Rose inventory", () => {
 
         const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
 
-        gildedRose.updateQuality();
+        gildedRose.advanceDay();
 
         expect(gildedRose.items[0].quality).toBe(quality - 2);
       });
@@ -86,7 +86,7 @@ describe("Gilded Rose inventory", () => {
 
         const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
 
-        gildedRose.updateQuality();
+        gildedRose.advanceDay();
 
         expect(gildedRose.items[0].quality).toBeGreaterThanOrEqual(0);
       });
@@ -98,7 +98,7 @@ describe("Gilded Rose inventory", () => {
 
         const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
 
-        gildedRose.updateQuality();
+        gildedRose.advanceDay();
 
         expect(gildedRose.items[0].quality).toBeGreaterThanOrEqual(0);
       });
@@ -110,7 +110,7 @@ describe("Gilded Rose inventory", () => {
 
         const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
 
-        gildedRose.updateQuality();
+        gildedRose.advanceDay();
 
         expect(gildedRose.items[0].quality).toBeGreaterThanOrEqual(0);
       });
@@ -122,7 +122,7 @@ describe("Gilded Rose inventory", () => {
 
         const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
 
-        gildedRose.updateQuality();
+        gildedRose.advanceDay();
 
         expect(gildedRose.items[0].sellIn).toBe(sellIn - 1);
       });
@@ -134,7 +134,7 @@ describe("Gilded Rose inventory", () => {
 
         const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
 
-        gildedRose.updateQuality();
+        gildedRose.advanceDay();
 
         expect(gildedRose.items[0].quality).toBe(quality + 1);
       });
@@ -146,7 +146,7 @@ describe("Gilded Rose inventory", () => {
 
         const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
 
-        gildedRose.updateQuality();
+        gildedRose.advanceDay();
 
         expect(gildedRose.items[0].quality).toBe(quality + 2);
       });
@@ -158,9 +158,21 @@ describe("Gilded Rose inventory", () => {
 
         const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
 
-        gildedRose.updateQuality();
+        gildedRose.advanceDay();
 
         expect(gildedRose.items[0].quality).toBe(quality + 2);
+      });
+
+      it("limits `AgedBrie` quality to 50 when `sellIn` is 0 and quality is 49", () => {
+        const name = "Aged Brie";
+        const sellIn = 0;
+        const quality = 49;
+
+        const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
+
+        gildedRose.advanceDay();
+
+        expect(gildedRose.items[0].quality).toBe(50);
       });
 
       it("does not increase `Aged Brie` quality above 50 when `sellIn` is greater than 0", () => {
@@ -170,7 +182,7 @@ describe("Gilded Rose inventory", () => {
 
         const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
 
-        gildedRose.updateQuality();
+        gildedRose.advanceDay();
 
         expect(gildedRose.items[0].quality).toBeLessThanOrEqual(50);
       });
@@ -182,7 +194,7 @@ describe("Gilded Rose inventory", () => {
 
         const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
 
-        gildedRose.updateQuality();
+        gildedRose.advanceDay();
 
         expect(gildedRose.items[0].quality).toBeLessThanOrEqual(50);
       });
@@ -194,7 +206,7 @@ describe("Gilded Rose inventory", () => {
 
         const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
 
-        gildedRose.updateQuality();
+        gildedRose.advanceDay();
 
         expect(gildedRose.items[0].quality).toBeLessThanOrEqual(50);
       });
@@ -206,7 +218,7 @@ describe("Gilded Rose inventory", () => {
 
         const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
 
-        gildedRose.updateQuality();
+        gildedRose.advanceDay();
 
         expect(gildedRose.items[0].sellIn).toBe(sellIn);
       });
@@ -218,7 +230,7 @@ describe("Gilded Rose inventory", () => {
 
         const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
 
-        gildedRose.updateQuality();
+        gildedRose.advanceDay();
 
         expect(gildedRose.items[0].sellIn).toBe(sellIn);
       });
@@ -230,7 +242,7 @@ describe("Gilded Rose inventory", () => {
 
         const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
 
-        gildedRose.updateQuality();
+        gildedRose.advanceDay();
 
         expect(gildedRose.items[0].sellIn).toBe(sellIn);
       });
@@ -242,7 +254,7 @@ describe("Gilded Rose inventory", () => {
 
         const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
 
-        gildedRose.updateQuality();
+        gildedRose.advanceDay();
 
         expect(gildedRose.items[0].quality).toBe(quality);
       });
@@ -254,7 +266,7 @@ describe("Gilded Rose inventory", () => {
 
         const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
 
-        gildedRose.updateQuality();
+        gildedRose.advanceDay();
 
         expect(gildedRose.items[0].quality).toBe(quality);
       });
@@ -266,7 +278,7 @@ describe("Gilded Rose inventory", () => {
 
         const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
 
-        gildedRose.updateQuality();
+        gildedRose.advanceDay();
 
         expect(gildedRose.items[0].quality).toBe(quality);
       });
@@ -278,7 +290,7 @@ describe("Gilded Rose inventory", () => {
 
         const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
 
-        gildedRose.updateQuality();
+        gildedRose.advanceDay();
 
         expect(gildedRose.items[0].sellIn).toBe(sellIn - 1);
       });
@@ -298,7 +310,7 @@ describe("Gilded Rose inventory", () => {
 
           const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
 
-          gildedRose.updateQuality();
+          gildedRose.advanceDay();
 
           expect(gildedRose.items[0].quality).toBe(quality + qualityIncrease);
         }
@@ -312,7 +324,7 @@ describe("Gilded Rose inventory", () => {
 
           const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
 
-          gildedRose.updateQuality();
+          gildedRose.advanceDay();
 
           expect(gildedRose.items[0].quality).toBeLessThanOrEqual(50);
         }
@@ -325,7 +337,7 @@ describe("Gilded Rose inventory", () => {
 
         const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
 
-        gildedRose.updateQuality();
+        gildedRose.advanceDay();
 
         expect(gildedRose.items[0].quality).toBe(0);
       });
@@ -337,7 +349,7 @@ describe("Gilded Rose inventory", () => {
 
         const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
 
-        gildedRose.updateQuality();
+        gildedRose.advanceDay();
 
         expect(gildedRose.items[0].quality).toBe(0);
       });
@@ -359,7 +371,7 @@ describe("Gilded Rose inventory", () => {
           backstagePassesItem,
         ]);
 
-        gildedRose.updateQuality();
+        gildedRose.advanceDay();
 
         expect(gildedRose.items[0].sellIn).toBe(9);
         expect(gildedRose.items[0].quality).toBe(19);

@@ -109,3 +109,33 @@ The tests will still pass. This is a good usecase for `it.each` pattern.
 Additionally, there is a lot of repetition in each test. I believe the tests are still going to change a bit, so I will address this issue later.
 
 And finally, all current tests use a single item. In theory, I should repeat each test with multiple items to ensure every feature works with multiple items, but that will result in extremely verbose test file.
+
+---
+
+I have started refactoring the tests by abstracting the `Item` creation. For example:
+
+```ts
+const defaultSellIn = 10;
+const defaultQuality = 20;
+
+const createRegularItem = ({
+  sellIn = defaultSellIn,
+  quality = defaultQuality,
+} = {}) => new Item("Rune platebody", sellIn, quality);
+
+it("reduces item `sellIn` by 1", () => {
+  const sellIn = 10;
+
+  const gildedRose = new GildedRose([createRegularItem({ sellIn })]);
+
+  gildedRose.updateQuality();
+
+  expect(gildedRose.items[0].sellIn).toBe(sellIn - 1);
+});
+```
+
+However, I have ultimately decided against this idea. Sure, there's less lines of code, it is "cleaner", but now if you read the test _only_, it is not clear what exactly a "regular" item is, and what quality value it has. I prefer explicit tests, with as little of abstractions as possible. They are obviously more verbose, but they are easy to understand and easy to modify.
+
+---
+
+I have tested each type of items with various `sellIn` values and utilized `it.each` to cover all `Backstage passes` cases, which results in 46 tests, which is a bit of an overkill. In reality, it is necessary to balance available time with coverage and test performance. In this case, let's say we have unlimited time and this is a mission critical system that needs to be tested really thoroughly.

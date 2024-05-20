@@ -151,3 +151,5 @@ The glaring issue with the code is that the logic is deeply nested and difficult
 ---
 
 Next, `updateQuality` name violates single responsibility principle, because it is not only updates the quality, but also decrements the `sellIn` value. I have renamed it to `advanceDay` to better describe its purpose. I have also extracted each item quality update to separate methods. During this I have discovered an edge case – when Aged Brie had a `quality` of 49 and `sellIn` of 0 or lower, its quality would increase to 51. I have added a unit test for this case and fixed it.
+
+I have replaced `for` with `forEach` and `if` statements with `switch`. I find it a bit easier to understand.

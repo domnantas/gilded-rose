@@ -20,31 +20,38 @@ const MIN_QUALITY = 0;
 export class GildedRose {
   items: Item[];
 
-  constructor(items = [] as Item[]) {
+  constructor(items: Item[] = []) {
     this.items = items;
   }
 
   advanceDay() {
-    for (const item of this.items) {
-      if (item.name === "Aged Brie") {
-        this.updateAgedBrieQuality(item);
-        this.decrementSellIn(item);
-      } else if (item.name === "Sulfuras, Hand of Ragnaros") {
-        continue;
-      } else if (item.name === "Backstage passes to a TAFKAL80ETC concert") {
-        this.updateBackstagePassesQuality(item);
-        this.decrementSellIn(item);
-      } else {
-        this.updateRegularQuality(item);
-        this.decrementSellIn(item);
+    this.items.forEach((item) => {
+      switch (item.name) {
+        case "Aged Brie": {
+          this.updateAgedBrieQuality(item);
+          this.decrementSellIn(item);
+          break;
+        }
+        case "Sulfuras, Hand of Ragnaros": {
+          break;
+        }
+        case "Backstage passes to a TAFKAL80ETC concert": {
+          this.updateBackstagePassesQuality(item);
+          this.decrementSellIn(item);
+          break;
+        }
+        default: {
+          this.updateRegularQuality(item);
+          this.decrementSellIn(item);
+        }
       }
-    }
+    });
 
     return this.items;
   }
 
   private decrementSellIn(item: Item) {
-    return (item.sellIn -= 1);
+    item.sellIn -= 1;
   }
 
   private updateAgedBrieQuality(item: Item) {

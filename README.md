@@ -94,7 +94,7 @@ According to the requirements, I have prepared the following plan:
 - [x] Implement the new `Conjured` item feature
 - [x] Create a CRUD UI for the inventory using React
 - [ ] Add e2e tests
-- [ ] Deploy the project
+- [x] Deploy the project
 
 ## Progress notes
 
@@ -164,3 +164,7 @@ There is a requirement for a new `Conjured` item feature. I have added tests whi
 ### CRUD UI
 
 I have implemented a simple CRUD UI for inventory items. I had to modify the `Item` class by adding an `id`, because Update and Delete operations require a unique reference to the affected item.
+
+### Deployment
+
+I have used AWS Amplify to deploy this application. It can be accessed via https://main.dumbir4330ubv.amplifyapp.com/

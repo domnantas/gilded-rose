@@ -12,6 +12,7 @@ interface InventoryItemProps {
     sellIn: Item["sellIn"],
     quality: Item["quality"]
   ) => void;
+  onRemove?: (id: Item["id"]) => void;
 }
 
 export const InventoryItem = ({
@@ -20,6 +21,7 @@ export const InventoryItem = ({
   sellIn,
   quality,
   onSave,
+  onRemove,
 }: InventoryItemProps) => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [nameInput, setNameInput] = useState(name);
@@ -78,6 +80,7 @@ export const InventoryItem = ({
           <td>{quality}</td>
           <td>
             <button onClick={() => setIsEditMode(true)}>Edit</button>
+            <button onClick={() => onRemove?.(id)}>Remove</button>
           </td>
         </>
       )}

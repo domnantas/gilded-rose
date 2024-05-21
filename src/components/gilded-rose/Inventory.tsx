@@ -59,6 +59,12 @@ export const Inventory = () => {
     setItems(updatedItems);
   };
 
+  const handleRemove = (id: Item["id"]) => {
+    const updatedItems = items.filter((item) => item.id !== id);
+
+    setItems(updatedItems);
+  };
+
   return (
     <div>
       <button onClick={advanceDay}>Advance day</button>
@@ -82,6 +88,7 @@ export const Inventory = () => {
                 sellIn={item.sellIn}
                 quality={item.quality}
                 onSave={handleEditSave}
+                onRemove={handleRemove}
               />
             );
           })}

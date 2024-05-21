@@ -156,3 +156,7 @@ Next, `updateQuality` name violates single responsibility principle, because it 
 I have replaced `for` with `forEach` and `if` statements with `switch`. I find it a bit easier to understand. I have then extracted clamping functions to methods and special item names to constants.
 
 At this point I believe the refactoring is complete, the code is more readable, it is well-tested, and easy to extend.
+
+### New feature
+
+There is a requirement for a new `Conjured` item feature. I have added tests which are initially failing.

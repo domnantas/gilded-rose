@@ -4,6 +4,7 @@ import {
   AGED_BRIE,
   SULFURAS,
   BACKSTAGE_PASSES,
+  CONJURED,
 } from "@/app/gilded-rose";
 import { describe, expect, it } from "vitest";
 import { range } from "lodash-es";
@@ -358,6 +359,90 @@ describe("Gilded Rose inventory", () => {
         gildedRose.advanceDay();
 
         expect(gildedRose.items[0].quality).toBe(0);
+      });
+
+      it("reduces `Conjured` item `sellIn` by 1", () => {
+        const name = CONJURED;
+        const sellIn = 10;
+        const quality = 20;
+
+        const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
+
+        gildedRose.advanceDay();
+
+        expect(gildedRose.items[0].sellIn).toBe(sellIn - 1);
+      });
+
+      it("reduces `Conjured` item `quality` by 2 when `sellIn`is greater than 0", () => {
+        const name = CONJURED;
+        const sellIn = 10;
+        const quality = 20;
+
+        const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
+
+        gildedRose.advanceDay();
+
+        expect(gildedRose.items[0].quality).toBe(quality - 2);
+      });
+
+      it("reduces `Conjured` item `quality` by 4 when `sellIn` is 0", () => {
+        const name = CONJURED;
+        const sellIn = 0;
+        const quality = 20;
+
+        const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
+
+        gildedRose.advanceDay();
+
+        expect(gildedRose.items[0].quality).toBe(quality - 4);
+      });
+
+      it("reduces `Conjured` item `quality` by 4 when `sellIn` is lower than 0", () => {
+        const name = CONJURED;
+        const sellIn = -4;
+        const quality = 20;
+
+        const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
+
+        gildedRose.advanceDay();
+
+        expect(gildedRose.items[0].quality).toBe(quality - 4);
+      });
+
+      it("does not reduce `Conjured` item quality below 0 when `sellIn` is greater than 0", () => {
+        const name = CONJURED;
+        const sellIn = 10;
+        const quality = 0;
+
+        const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
+
+        gildedRose.advanceDay();
+
+        expect(gildedRose.items[0].quality).toBeGreaterThanOrEqual(0);
+      });
+
+      it("does not reduce `Conjured` item quality below 0 when `sellIn` is 0", () => {
+        const name = CONJURED;
+        const sellIn = 0;
+        const quality = 0;
+
+        const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
+
+        gildedRose.advanceDay();
+
+        expect(gildedRose.items[0].quality).toBeGreaterThanOrEqual(0);
+      });
+
+      it("does not reduce `Conjured` item quality below 0 when `sellIn` is lower than 0", () => {
+        const name = CONJURED;
+        const sellIn = -5;
+        const quality = 0;
+
+        const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
+
+        gildedRose.advanceDay();
+
+        expect(gildedRose.items[0].quality).toBeGreaterThanOrEqual(0);
       });
 
       it("updates quality for multiple provided items", () => {

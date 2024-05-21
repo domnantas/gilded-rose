@@ -1,5 +1,7 @@
 import { GildedRose, Item } from "@/lib/gilded-rose/gilded-rose";
 import { FormEvent, useState } from "react";
+import { InventoryItem } from "./InventoryItem";
+import { nanoid } from "nanoid";
 
 interface FormElements extends HTMLFormControlsCollection {
   nameInput: HTMLInputElement;
@@ -12,7 +14,7 @@ interface AddFormElement extends HTMLFormElement {
 
 export const Inventory = () => {
   const [items, setItems] = useState<Item[]>([
-    new Item("Rune platebody", 10, 20),
+    new Item(nanoid(), "Rune platebody", 10, 20),
   ]);
 
   const inventory = new GildedRose(items);
@@ -30,11 +32,31 @@ export const Inventory = () => {
     setItems([
       ...items,
       new Item(
+        nanoid(),
         formElements.nameInput.value,
         Number(formElements.sellInInput.value),
         Number(formElements.qualityInput.value)
       ),
     ]);
+
+    event.currentTarget.reset();
+  };
+
+  const handleEditSave = (
+    id: Item["id"],
+    name: Item["name"],
+    sellIn: Item["sellIn"],
+    quality: Item["quality"]
+  ) => {
+    const updatedItems = items.map((item) => {
+      if (item.id === id) {
+        return { ...item, id, name, sellIn, quality };
+      }
+
+      return item;
+    });
+
+    setItems(updatedItems);
   };
 
   return (
@@ -47,16 +69,20 @@ export const Inventory = () => {
             <th>Name</th>
             <th>Sell in</th>
             <th>Quality</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
-          {inventory.items.map((item, index) => {
+          {inventory.items.map((item) => {
             return (
-              <tr key={`${item.name}-${index}`}>
-                <td>{item.name}</td>
-                <td>{item.sellIn}</td>
-                <td>{item.quality}</td>
-              </tr>
+              <InventoryItem
+                key={`${item.id}-${item.sellIn}-${item.quality}`}
+                id={item.id}
+                name={item.name}
+                sellIn={item.sellIn}
+                quality={item.quality}
+                onSave={handleEditSave}
+              />
             );
           })}
         </tbody>

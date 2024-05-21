@@ -1,13 +1,16 @@
 export class Item {
+  id: string;
   name: string;
   sellIn: number;
   quality: number;
 
   constructor(
+    id: Item["id"],
     name: Item["name"],
     sellIn: Item["sellIn"],
     quality: Item["quality"]
   ) {
+    this.id = id;
     this.name = name;
     this.sellIn = sellIn;
     this.quality = quality;

@@ -91,7 +91,7 @@ According to the requirements, I have prepared the following plan:
 - [x] Fix type errors in the current code
 - [x] Write unit tests for current code to gain a better understanding of the requirements and prepare for the refactoring
 - [x] Refactor the code according to the principles above
-- [ ] Implement the new `Conjured` item feature
+- [x] Implement the new `Conjured` item feature
 - [ ] Create a CRUD UI for the inventory using React
 - [ ] Add e2e tests
 - [ ] Deploy the project
@@ -159,4 +159,4 @@ At this point I believe the refactoring is complete, the code is more readable, 
 
 ### New feature
 
-There is a requirement for a new `Conjured` item feature. I have added tests which are initially failing.
+There is a requirement for a new `Conjured` item feature. I have added tests which are initially failing. After that, it only took me a minute to add the new feature, which I attribute to the successful refactor.

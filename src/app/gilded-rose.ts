@@ -44,6 +44,11 @@ export class GildedRose {
           this.decrementSellIn(item);
           break;
         }
+        case CONJURED: {
+          this.updateConjuredQuality(item);
+          this.decrementSellIn(item);
+          break;
+        }
         default: {
           this.updateRegularQuality(item);
           this.decrementSellIn(item);
@@ -83,6 +88,14 @@ export class GildedRose {
       item.quality = this.clampToMax(item.quality + 3);
     } else {
       item.quality = 0;
+    }
+  }
+
+  private updateConjuredQuality(item: Item) {
+    if (item.sellIn <= 0) {
+      item.quality = this.clampToMin(item.quality - 4);
+    } else {
+      item.quality = this.clampToMin(item.quality - 2);
     }
   }
 

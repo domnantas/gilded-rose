@@ -4,3 +4,8 @@
   padding: 2rem;
   text-align: center;
 }
+
+hr {
+  border-color: #e4e4e7;
+  color: red;
+}

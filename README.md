@@ -92,7 +92,7 @@ According to the requirements, I have prepared the following plan:
 - [x] Write unit tests for current code to gain a better understanding of the requirements and prepare for the refactoring
 - [x] Refactor the code according to the principles above
 - [x] Implement the new `Conjured` item feature
-- [ ] Create a CRUD UI for the inventory using React
+- [x] Create a CRUD UI for the inventory using React
 - [ ] Add e2e tests
 - [ ] Deploy the project
 

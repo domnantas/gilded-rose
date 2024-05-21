@@ -1,0 +1,16 @@
+.table {
+  width: 100%;
+  max-width:40rem;
+  margin: 0 auto;
+}
+
+.center-gaps {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.number-input {
+  max-width: 7rem;
+}

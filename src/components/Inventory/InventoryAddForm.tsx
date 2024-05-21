@@ -1,5 +1,9 @@
 import { FormEvent } from "react";
 import { Item } from "@/lib/gilded-rose/gilded-rose";
+import { Button } from "@/components/ui/Button/Button";
+import { Input } from "@/components/ui/Input/Input";
+import classes from "@/components/Inventory/Inventory.module.css";
+import clsx from "clsx";
 
 interface FormElements extends HTMLFormControlsCollection {
   nameInput: HTMLInputElement;
@@ -32,17 +36,26 @@ export const InventoryAddForm = ({ onAdd }: InventoryAddFormProps) => {
   };
 
   return (
-    <form onSubmit={handleAddFormSubmit}>
-      <input type="text" placeholder="Name" id="nameInput" />
-      <input type="number" placeholder="Sell in" id="sellInInput" />
-      <input
+    <form
+      onSubmit={handleAddFormSubmit}
+      className={clsx(classes["center-gaps"])}
+    >
+      <Input type="text" placeholder="Name" id="nameInput" />
+      <Input
+        type="number"
+        placeholder="Sell in"
+        id="sellInInput"
+        className={clsx(classes["number-input"])}
+      />
+      <Input
         type="number"
         placeholder="Quality"
         id="qualityInput"
+        className={clsx(classes["number-input"])}
         min={0}
         max={80}
       />
-      <button type="submit">Add</button>
+      <Button type="submit">Add</Button>
     </form>
   );
 };

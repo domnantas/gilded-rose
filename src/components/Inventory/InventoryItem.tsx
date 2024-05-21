@@ -1,6 +1,10 @@
-import { Item } from "@/lib/gilded-rose/gilded-rose";
-import { clamp } from "lodash-es";
 import { useState } from "react";
+import { clamp } from "lodash-es";
+import clsx from "clsx";
+import { Item } from "@/lib/gilded-rose/gilded-rose";
+import { Button } from "@/components/ui/Button/Button";
+import { Input } from "@/components/ui/Input/Input";
+import classes from "@/components/Inventory/Inventory.module.css";
 
 interface InventoryItemProps {
   item: Item;
@@ -24,22 +28,18 @@ export const InventoryItem = ({
     setIsEditMode(false);
   };
 
-  return (
-    <tr>
-      {isEditMode ? (
-        <EditModeRow
-          item={item}
-          onSaveClick={handleSaveClick}
-          onCancelClick={handleCancelClick}
-        />
-      ) : (
-        <ViewModeRow
-          item={item}
-          onEditClick={() => setIsEditMode(true)}
-          onRemoveClick={(id) => onRemove?.(id)}
-        />
-      )}
-    </tr>
+  return isEditMode ? (
+    <EditModeRow
+      item={item}
+      onSaveClick={handleSaveClick}
+      onCancelClick={handleCancelClick}
+    />
+  ) : (
+    <ViewModeRow
+      item={item}
+      onEditClick={() => setIsEditMode(true)}
+      onRemoveClick={(id) => onRemove?.(id)}
+    />
   );
 };
 
@@ -58,9 +58,9 @@ const ViewModeRow = ({
     <td>{item.name}</td>
     <td>{item.sellIn}</td>
     <td>{item.quality}</td>
-    <td>
-      <button onClick={() => onEditClick?.()}>Edit</button>
-      <button onClick={() => onRemoveClick?.(item.id)}>Remove</button>
+    <td className={clsx(classes["center-gaps"])}>
+      <Button onClick={() => onEditClick?.()}>Edit</Button>
+      <Button onClick={() => onRemoveClick?.(item.id)}>Remove</Button>
     </td>
   </tr>
 );
@@ -83,7 +83,7 @@ const EditModeRow = ({
   return (
     <tr>
       <td>
-        <input
+        <Input
           type="text"
           placeholder="Name"
           value={nameInput}
@@ -91,27 +91,28 @@ const EditModeRow = ({
         />
       </td>
       <td>
-        <input
+        <Input
           type="number"
           placeholder="Sell in"
           value={sellInInput}
+          className={clsx(classes["number-input"])}
           onChange={(event) => setSellInInput(Number(event.target.value))}
         />
       </td>
       <td>
-        <input
+        <Input
           type="number"
           placeholder="Quality"
           value={qualityInput}
           min={0}
-          max={80}
+          className={clsx(classes["number-input"])}
           onChange={(event) =>
             setQualityInput(clamp(Number(event.target.value), 0, 80))
           }
         />
       </td>
-      <td>
-        <button
+      <td className={clsx(classes["center-gaps"])}>
+        <Button
           onClick={() =>
             onSaveClick?.(
               new Item(nameInput, sellInInput, qualityInput, item.id)
@@ -119,8 +120,8 @@ const EditModeRow = ({
           }
         >
           Save
-        </button>
-        <button onClick={() => onCancelClick?.()}>Cancel</button>
+        </Button>
+        <Button onClick={() => onCancelClick?.()}>Cancel</Button>
       </td>
     </tr>
   );

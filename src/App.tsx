@@ -1,5 +1,5 @@
 import "@/App.css";
-import { Inventory } from "./components/gilded-rose/Inventory";
+import { Inventory } from "./components/Inventory/Inventory";
 
 function App() {
   return <Inventory />;

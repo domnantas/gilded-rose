@@ -1,4 +1,10 @@
-import { Item, GildedRose } from "@/app/gilded-rose";
+import {
+  Item,
+  GildedRose,
+  AGED_BRIE,
+  SULFURAS,
+  BACKSTAGE_PASSES,
+} from "@/app/gilded-rose";
 import { describe, expect, it } from "vitest";
 import { range } from "lodash-es";
 
@@ -116,7 +122,7 @@ describe("Gilded Rose inventory", () => {
       });
 
       it("reduces `Aged Brie` item `sellIn` by 1", () => {
-        const name = "Aged Brie";
+        const name = AGED_BRIE;
         const sellIn = 10;
         const quality = 20;
 
@@ -128,7 +134,7 @@ describe("Gilded Rose inventory", () => {
       });
 
       it("increases `Aged Brie` quality by 1 when `sellIn` is greater than 0", () => {
-        const name = "Aged Brie";
+        const name = AGED_BRIE;
         const sellIn = 10;
         const quality = 20;
 
@@ -140,7 +146,7 @@ describe("Gilded Rose inventory", () => {
       });
 
       it("increases `Aged Brie` quality by 2 when `sellIn` is 0", () => {
-        const name = "Aged Brie";
+        const name = AGED_BRIE;
         const sellIn = 0;
         const quality = 20;
 
@@ -152,7 +158,7 @@ describe("Gilded Rose inventory", () => {
       });
 
       it("increases `Aged Brie` quality by 2 when `sellIn` is lower than 0", () => {
-        const name = "Aged Brie";
+        const name = AGED_BRIE;
         const sellIn = -3;
         const quality = 20;
 
@@ -164,7 +170,7 @@ describe("Gilded Rose inventory", () => {
       });
 
       it("limits `AgedBrie` quality to 50 when `sellIn` is 0 and quality is 49", () => {
-        const name = "Aged Brie";
+        const name = AGED_BRIE;
         const sellIn = 0;
         const quality = 49;
 
@@ -176,7 +182,7 @@ describe("Gilded Rose inventory", () => {
       });
 
       it("does not increase `Aged Brie` quality above 50 when `sellIn` is greater than 0", () => {
-        const name = "Aged Brie";
+        const name = AGED_BRIE;
         const sellIn = 10;
         const quality = 50;
 
@@ -188,7 +194,7 @@ describe("Gilded Rose inventory", () => {
       });
 
       it("does not increase `Aged Brie` quality above 50 when `sellIn` is 0", () => {
-        const name = "Aged Brie";
+        const name = AGED_BRIE;
         const sellIn = 0;
         const quality = 50;
 
@@ -200,7 +206,7 @@ describe("Gilded Rose inventory", () => {
       });
 
       it("does not increase `Aged Brie` quality above 50 when `sellIn` is lower than 0", () => {
-        const name = "Aged Brie";
+        const name = AGED_BRIE;
         const sellIn = -5;
         const quality = 50;
 
@@ -212,7 +218,7 @@ describe("Gilded Rose inventory", () => {
       });
 
       it("does not change `Sulfuras, Hand of Ragnaros` `sellIn` value when it is greater than 0", () => {
-        const name = "Sulfuras, Hand of Ragnaros";
+        const name = SULFURAS;
         const sellIn = 10;
         const quality = 80;
 
@@ -224,7 +230,7 @@ describe("Gilded Rose inventory", () => {
       });
 
       it("does not change `Sulfuras, Hand of Ragnaros` `sellIn` value when it is 0", () => {
-        const name = "Sulfuras, Hand of Ragnaros";
+        const name = SULFURAS;
         const sellIn = 0;
         const quality = 80;
 
@@ -236,7 +242,7 @@ describe("Gilded Rose inventory", () => {
       });
 
       it("does not change `Sulfuras, Hand of Ragnaros` `sellIn` value when it is lower than 0", () => {
-        const name = "Sulfuras, Hand of Ragnaros";
+        const name = SULFURAS;
         const sellIn = 0;
         const quality = 80;
 
@@ -248,7 +254,7 @@ describe("Gilded Rose inventory", () => {
       });
 
       it("does not change `Sulfuras, Hand of Ragnaros` `quality` value, when `sellIn` is greater than 0", () => {
-        const name = "Sulfuras, Hand of Ragnaros";
+        const name = SULFURAS;
         const sellIn = 10;
         const quality = 80;
 
@@ -260,7 +266,7 @@ describe("Gilded Rose inventory", () => {
       });
 
       it("does not change `Sulfuras, Hand of Ragnaros` `quality` value, when `sellIn` is 0", () => {
-        const name = "Sulfuras, Hand of Ragnaros";
+        const name = SULFURAS;
         const sellIn = 0;
         const quality = 80;
 
@@ -272,7 +278,7 @@ describe("Gilded Rose inventory", () => {
       });
 
       it("does not change `Sulfuras, Hand of Ragnaros` `quality` value, when `sellIn` is lower than 0", () => {
-        const name = "Sulfuras, Hand of Ragnaros";
+        const name = SULFURAS;
         const sellIn = -5;
         const quality = 80;
 
@@ -284,7 +290,7 @@ describe("Gilded Rose inventory", () => {
       });
 
       it("reduces `Backstage passes to a TAFKAL80ETC concert` item `sellIn` by 1", () => {
-        const name = "Backstage passes to a TAFKAL80ETC concert";
+        const name = BACKSTAGE_PASSES;
         const sellIn = 10;
         const quality = 20;
 
@@ -305,7 +311,7 @@ describe("Gilded Rose inventory", () => {
       ])(
         "increases `Backstage passes to a TAFKAL80ETC concert` quality by $qualityIncrease when `sellIn` is $sellIn",
         ({ sellIn, qualityIncrease }) => {
-          const name = "Backstage passes to a TAFKAL80ETC concert";
+          const name = BACKSTAGE_PASSES;
           const quality = 20;
 
           const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
@@ -319,7 +325,7 @@ describe("Gilded Rose inventory", () => {
       it.each(range(11, 0))(
         "does not increase `Backstage passes to a TAFKAL80ETC concert` quality above 50 when `sellIn` is %i",
         (sellIn) => {
-          const name = "Backstage passes to a TAFKAL80ETC concert";
+          const name = BACKSTAGE_PASSES;
           const quality = 50;
 
           const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
@@ -331,7 +337,7 @@ describe("Gilded Rose inventory", () => {
       );
 
       it("sets `Backstage passes to a TAFKAL80ETC concert` quality to 0 when `sellIn` is 0", () => {
-        const name = "Backstage passes to a TAFKAL80ETC concert";
+        const name = BACKSTAGE_PASSES;
         const sellIn = 0;
         const quality = 20;
 
@@ -343,7 +349,7 @@ describe("Gilded Rose inventory", () => {
       });
 
       it("sets `Backstage passes to a TAFKAL80ETC concert` quality to 0 when `sellIn` is lower than 0", () => {
-        const name = "Backstage passes to a TAFKAL80ETC concert";
+        const name = BACKSTAGE_PASSES;
         const sellIn = -5;
         const quality = 20;
 
@@ -356,13 +362,9 @@ describe("Gilded Rose inventory", () => {
 
       it("updates quality for multiple provided items", () => {
         const regularItem = new Item("Rune platebody", 10, 20);
-        const agedBrieItem = new Item("Aged Brie", 10, 20);
-        const sulfurasItem = new Item("Sulfuras, Hand of Ragnaros", 10, 80);
-        const backstagePassesItem = new Item(
-          "Backstage passes to a TAFKAL80ETC concert",
-          10,
-          20
-        );
+        const agedBrieItem = new Item(AGED_BRIE, 10, 20);
+        const sulfurasItem = new Item(SULFURAS, 10, 80);
+        const backstagePassesItem = new Item(BACKSTAGE_PASSES, 10, 20);
 
         const gildedRose = new GildedRose([
           regularItem,

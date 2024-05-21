@@ -14,11 +14,14 @@ export class Item {
   }
 }
 
-const MAX_QUALITY = 50;
-const MIN_QUALITY = 0;
+export const AGED_BRIE = "Aged Brie";
+export const SULFURAS = "Sulfuras, Hand of Ragnaros";
+export const BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
 
 export class GildedRose {
   items: Item[];
+  private MAX_QUALITY = 50;
+  private MIN_QUALITY = 0;
 
   constructor(items: Item[] = []) {
     this.items = items;
@@ -27,15 +30,15 @@ export class GildedRose {
   advanceDay() {
     this.items.forEach((item) => {
       switch (item.name) {
-        case "Aged Brie": {
+        case AGED_BRIE: {
           this.updateAgedBrieQuality(item);
           this.decrementSellIn(item);
           break;
         }
-        case "Sulfuras, Hand of Ragnaros": {
+        case SULFURAS: {
           break;
         }
-        case "Backstage passes to a TAFKAL80ETC concert": {
+        case BACKSTAGE_PASSES: {
           this.updateBackstagePassesQuality(item);
           this.decrementSellIn(item);
           break;
@@ -50,25 +53,33 @@ export class GildedRose {
     return this.items;
   }
 
+  private clampToMax(value: number) {
+    return Math.min(value, this.MAX_QUALITY);
+  }
+
+  private clampToMin(value: number) {
+    return Math.max(value, this.MIN_QUALITY);
+  }
+
   private decrementSellIn(item: Item) {
     item.sellIn -= 1;
   }
 
   private updateAgedBrieQuality(item: Item) {
     if (item.sellIn > 0) {
-      item.quality = Math.min(item.quality + 1, MAX_QUALITY);
+      item.quality = this.clampToMax(item.quality + 1);
     } else {
-      item.quality = Math.min(item.quality + 2, MAX_QUALITY);
+      item.quality = this.clampToMax(item.quality + 2);
     }
   }
 
   private updateBackstagePassesQuality(item: Item) {
     if (item.sellIn > 10) {
-      item.quality = Math.min(item.quality + 1, MAX_QUALITY);
+      item.quality = this.clampToMax(item.quality + 1);
     } else if (item.sellIn > 5) {
-      item.quality = Math.min(item.quality + 2, MAX_QUALITY);
+      item.quality = this.clampToMax(item.quality + 2);
     } else if (item.sellIn > 0) {
-      item.quality = Math.min(item.quality + 3, MAX_QUALITY);
+      item.quality = this.clampToMax(item.quality + 3);
     } else {
       item.quality = 0;
     }
@@ -76,9 +87,9 @@ export class GildedRose {
 
   private updateRegularQuality(item: Item) {
     if (item.sellIn <= 0) {
-      item.quality = Math.max(item.quality - 2, MIN_QUALITY);
+      item.quality = this.clampToMin(item.quality - 2);
     } else {
-      item.quality = Math.max(item.quality - 1, MIN_QUALITY);
+      item.quality = this.clampToMin(item.quality - 1);
     }
   }
 }

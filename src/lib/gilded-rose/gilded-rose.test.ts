@@ -5,7 +5,7 @@ import {
   SULFURAS,
   BACKSTAGE_PASSES,
   CONJURED,
-} from "@/app/gilded-rose";
+} from "@/lib/gilded-rose/gilded-rose";
 import { describe, expect, it } from "vitest";
 import { range } from "lodash-es";
 

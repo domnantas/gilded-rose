@@ -9,8 +9,6 @@ import {
 import { describe, expect, it } from "vitest";
 import { range } from "lodash-es";
 
-const DEFAULT_ID = "abc";
-
 describe("Gilded Rose inventory", () => {
   describe("Item class", () => {
     it("initializes with provided name, sellIn, and quality values", () => {
@@ -18,7 +16,7 @@ describe("Gilded Rose inventory", () => {
       const sellIn = 10;
       const quality = 20;
 
-      const item = new Item(DEFAULT_ID, name, sellIn, quality);
+      const item = new Item(name, sellIn, quality);
 
       expect(item.name).toBe(name);
       expect(item.sellIn).toBe(sellIn);
@@ -32,9 +30,7 @@ describe("Gilded Rose inventory", () => {
       const sellIn = 10;
       const quality = 20;
 
-      const gildedRose = new GildedRose([
-        new Item(DEFAULT_ID, name, sellIn, quality),
-      ]);
+      const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
 
       expect(gildedRose.items[0].name).toBe(name);
       expect(gildedRose.items[0].sellIn).toBe(sellIn);
@@ -47,9 +43,7 @@ describe("Gilded Rose inventory", () => {
         const sellIn = 10;
         const quality = 20;
 
-        const gildedRose = new GildedRose([
-          new Item(DEFAULT_ID, name, sellIn, quality),
-        ]);
+        const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
 
         gildedRose.advanceDay();
 
@@ -61,9 +55,7 @@ describe("Gilded Rose inventory", () => {
         const sellIn = 10;
         const quality = 20;
 
-        const gildedRose = new GildedRose([
-          new Item(DEFAULT_ID, name, sellIn, quality),
-        ]);
+        const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
 
         gildedRose.advanceDay();
 
@@ -75,9 +67,7 @@ describe("Gilded Rose inventory", () => {
         const sellIn = 0;
         const quality = 20;
 
-        const gildedRose = new GildedRose([
-          new Item(DEFAULT_ID, name, sellIn, quality),
-        ]);
+        const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
 
         gildedRose.advanceDay();
 
@@ -89,9 +79,7 @@ describe("Gilded Rose inventory", () => {
         const sellIn = -4;
         const quality = 20;
 
-        const gildedRose = new GildedRose([
-          new Item(DEFAULT_ID, name, sellIn, quality),
-        ]);
+        const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
 
         gildedRose.advanceDay();
 
@@ -103,9 +91,7 @@ describe("Gilded Rose inventory", () => {
         const sellIn = 10;
         const quality = 0;
 
-        const gildedRose = new GildedRose([
-          new Item(DEFAULT_ID, name, sellIn, quality),
-        ]);
+        const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
 
         gildedRose.advanceDay();
 
@@ -117,9 +103,7 @@ describe("Gilded Rose inventory", () => {
         const sellIn = 0;
         const quality = 0;
 
-        const gildedRose = new GildedRose([
-          new Item(DEFAULT_ID, name, sellIn, quality),
-        ]);
+        const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
 
         gildedRose.advanceDay();
 
@@ -131,9 +115,7 @@ describe("Gilded Rose inventory", () => {
         const sellIn = -5;
         const quality = 0;
 
-        const gildedRose = new GildedRose([
-          new Item(DEFAULT_ID, name, sellIn, quality),
-        ]);
+        const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
 
         gildedRose.advanceDay();
 
@@ -145,9 +127,7 @@ describe("Gilded Rose inventory", () => {
         const sellIn = 10;
         const quality = 20;
 
-        const gildedRose = new GildedRose([
-          new Item(DEFAULT_ID, name, sellIn, quality),
-        ]);
+        const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
 
         gildedRose.advanceDay();
 
@@ -159,9 +139,7 @@ describe("Gilded Rose inventory", () => {
         const sellIn = 10;
         const quality = 20;
 
-        const gildedRose = new GildedRose([
-          new Item(DEFAULT_ID, name, sellIn, quality),
-        ]);
+        const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
 
         gildedRose.advanceDay();
 
@@ -173,9 +151,7 @@ describe("Gilded Rose inventory", () => {
         const sellIn = 0;
         const quality = 20;
 
-        const gildedRose = new GildedRose([
-          new Item(DEFAULT_ID, name, sellIn, quality),
-        ]);
+        const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
 
         gildedRose.advanceDay();
 
@@ -187,9 +163,7 @@ describe("Gilded Rose inventory", () => {
         const sellIn = -3;
         const quality = 20;
 
-        const gildedRose = new GildedRose([
-          new Item(DEFAULT_ID, name, sellIn, quality),
-        ]);
+        const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
 
         gildedRose.advanceDay();
 
@@ -201,9 +175,7 @@ describe("Gilded Rose inventory", () => {
         const sellIn = 0;
         const quality = 49;
 
-        const gildedRose = new GildedRose([
-          new Item(DEFAULT_ID, name, sellIn, quality),
-        ]);
+        const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
 
         gildedRose.advanceDay();
 
@@ -215,9 +187,7 @@ describe("Gilded Rose inventory", () => {
         const sellIn = 10;
         const quality = 50;
 
-        const gildedRose = new GildedRose([
-          new Item(DEFAULT_ID, name, sellIn, quality),
-        ]);
+        const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
 
         gildedRose.advanceDay();
 
@@ -229,9 +199,7 @@ describe("Gilded Rose inventory", () => {
         const sellIn = 0;
         const quality = 50;
 
-        const gildedRose = new GildedRose([
-          new Item(DEFAULT_ID, name, sellIn, quality),
-        ]);
+        const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
 
         gildedRose.advanceDay();
 
@@ -243,9 +211,7 @@ describe("Gilded Rose inventory", () => {
         const sellIn = -5;
         const quality = 50;
 
-        const gildedRose = new GildedRose([
-          new Item(DEFAULT_ID, name, sellIn, quality),
-        ]);
+        const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
 
         gildedRose.advanceDay();
 
@@ -257,9 +223,7 @@ describe("Gilded Rose inventory", () => {
         const sellIn = 10;
         const quality = 80;
 
-        const gildedRose = new GildedRose([
-          new Item(DEFAULT_ID, name, sellIn, quality),
-        ]);
+        const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
 
         gildedRose.advanceDay();
 
@@ -271,9 +235,7 @@ describe("Gilded Rose inventory", () => {
         const sellIn = 0;
         const quality = 80;
 
-        const gildedRose = new GildedRose([
-          new Item(DEFAULT_ID, name, sellIn, quality),
-        ]);
+        const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
 
         gildedRose.advanceDay();
 
@@ -285,9 +247,7 @@ describe("Gilded Rose inventory", () => {
         const sellIn = 0;
         const quality = 80;
 
-        const gildedRose = new GildedRose([
-          new Item(DEFAULT_ID, name, sellIn, quality),
-        ]);
+        const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
 
         gildedRose.advanceDay();
 
@@ -299,9 +259,7 @@ describe("Gilded Rose inventory", () => {
         const sellIn = 10;
         const quality = 80;
 
-        const gildedRose = new GildedRose([
-          new Item(DEFAULT_ID, name, sellIn, quality),
-        ]);
+        const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
 
         gildedRose.advanceDay();
 
@@ -313,9 +271,7 @@ describe("Gilded Rose inventory", () => {
         const sellIn = 0;
         const quality = 80;
 
-        const gildedRose = new GildedRose([
-          new Item(DEFAULT_ID, name, sellIn, quality),
-        ]);
+        const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
 
         gildedRose.advanceDay();
 
@@ -327,9 +283,7 @@ describe("Gilded Rose inventory", () => {
         const sellIn = -5;
         const quality = 80;
 
-        const gildedRose = new GildedRose([
-          new Item(DEFAULT_ID, name, sellIn, quality),
-        ]);
+        const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
 
         gildedRose.advanceDay();
 
@@ -341,9 +295,7 @@ describe("Gilded Rose inventory", () => {
         const sellIn = 10;
         const quality = 20;
 
-        const gildedRose = new GildedRose([
-          new Item(DEFAULT_ID, name, sellIn, quality),
-        ]);
+        const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
 
         gildedRose.advanceDay();
 
@@ -363,9 +315,7 @@ describe("Gilded Rose inventory", () => {
           const name = BACKSTAGE_PASSES;
           const quality = 20;
 
-          const gildedRose = new GildedRose([
-            new Item(DEFAULT_ID, name, sellIn, quality),
-          ]);
+          const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
 
           gildedRose.advanceDay();
 
@@ -379,9 +329,7 @@ describe("Gilded Rose inventory", () => {
           const name = BACKSTAGE_PASSES;
           const quality = 50;
 
-          const gildedRose = new GildedRose([
-            new Item(DEFAULT_ID, name, sellIn, quality),
-          ]);
+          const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
 
           gildedRose.advanceDay();
 
@@ -394,9 +342,7 @@ describe("Gilded Rose inventory", () => {
         const sellIn = 0;
         const quality = 20;
 
-        const gildedRose = new GildedRose([
-          new Item(DEFAULT_ID, name, sellIn, quality),
-        ]);
+        const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
 
         gildedRose.advanceDay();
 
@@ -408,9 +354,7 @@ describe("Gilded Rose inventory", () => {
         const sellIn = -5;
         const quality = 20;
 
-        const gildedRose = new GildedRose([
-          new Item(DEFAULT_ID, name, sellIn, quality),
-        ]);
+        const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
 
         gildedRose.advanceDay();
 
@@ -422,9 +366,7 @@ describe("Gilded Rose inventory", () => {
         const sellIn = 10;
         const quality = 20;
 
-        const gildedRose = new GildedRose([
-          new Item(DEFAULT_ID, name, sellIn, quality),
-        ]);
+        const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
 
         gildedRose.advanceDay();
 
@@ -436,9 +378,7 @@ describe("Gilded Rose inventory", () => {
         const sellIn = 10;
         const quality = 20;
 
-        const gildedRose = new GildedRose([
-          new Item(DEFAULT_ID, name, sellIn, quality),
-        ]);
+        const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
 
         gildedRose.advanceDay();
 
@@ -450,9 +390,7 @@ describe("Gilded Rose inventory", () => {
         const sellIn = 0;
         const quality = 20;
 
-        const gildedRose = new GildedRose([
-          new Item(DEFAULT_ID, name, sellIn, quality),
-        ]);
+        const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
 
         gildedRose.advanceDay();
 
@@ -464,9 +402,7 @@ describe("Gilded Rose inventory", () => {
         const sellIn = -4;
         const quality = 20;
 
-        const gildedRose = new GildedRose([
-          new Item(DEFAULT_ID, name, sellIn, quality),
-        ]);
+        const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
 
         gildedRose.advanceDay();
 
@@ -478,9 +414,7 @@ describe("Gilded Rose inventory", () => {
         const sellIn = 10;
         const quality = 0;
 
-        const gildedRose = new GildedRose([
-          new Item(DEFAULT_ID, name, sellIn, quality),
-        ]);
+        const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
 
         gildedRose.advanceDay();
 
@@ -492,9 +426,7 @@ describe("Gilded Rose inventory", () => {
         const sellIn = 0;
         const quality = 0;
 
-        const gildedRose = new GildedRose([
-          new Item(DEFAULT_ID, name, sellIn, quality),
-        ]);
+        const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
 
         gildedRose.advanceDay();
 
@@ -506,9 +438,7 @@ describe("Gilded Rose inventory", () => {
         const sellIn = -5;
         const quality = 0;
 
-        const gildedRose = new GildedRose([
-          new Item(DEFAULT_ID, name, sellIn, quality),
-        ]);
+        const gildedRose = new GildedRose([new Item(name, sellIn, quality)]);
 
         gildedRose.advanceDay();
 
@@ -516,10 +446,10 @@ describe("Gilded Rose inventory", () => {
       });
 
       it("updates quality for multiple provided items", () => {
-        const regularItem = new Item("a", "Rune platebody", 10, 20);
-        const agedBrieItem = new Item("b", AGED_BRIE, 10, 20);
-        const sulfurasItem = new Item("c", SULFURAS, 10, 80);
-        const backstagePassesItem = new Item("d", BACKSTAGE_PASSES, 10, 20);
+        const regularItem = new Item("Rune platebody", 10, 20);
+        const agedBrieItem = new Item(AGED_BRIE, 10, 20);
+        const sulfurasItem = new Item(SULFURAS, 10, 80);
+        const backstagePassesItem = new Item(BACKSTAGE_PASSES, 10, 20);
 
         const gildedRose = new GildedRose([
           regularItem,

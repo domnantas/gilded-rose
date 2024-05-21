@@ -1,89 +1,127 @@
 import { Item } from "@/lib/gilded-rose/gilded-rose";
+import { clamp } from "lodash-es";
 import { useState } from "react";
 
 interface InventoryItemProps {
-  id: Item["id"];
-  name: Item["name"];
-  sellIn: Item["sellIn"];
-  quality: Item["quality"];
-  onSave?: (
-    id: Item["id"],
-    name: Item["name"],
-    sellIn: Item["sellIn"],
-    quality: Item["quality"]
-  ) => void;
+  item: Item;
+  onEditSave?: (item: Item) => void;
   onRemove?: (id: Item["id"]) => void;
 }
 
 export const InventoryItem = ({
-  id,
-  name,
-  sellIn,
-  quality,
-  onSave,
+  item,
+  onEditSave,
   onRemove,
 }: InventoryItemProps) => {
   const [isEditMode, setIsEditMode] = useState(false);
-  const [nameInput, setNameInput] = useState(name);
-  const [sellInInput, setSellInInput] = useState(sellIn);
-  const [qualityInput, setQualityInput] = useState(quality);
 
-  const handleSaveClick = () => {
+  const handleSaveClick = (item: Item) => {
     setIsEditMode(false);
-    onSave?.(id, nameInput, sellInInput, qualityInput);
+    onEditSave?.(item);
   };
 
   const handleCancelClick = () => {
     setIsEditMode(false);
-    setNameInput(name);
-    setSellInInput(sellIn);
-    setQualityInput(quality);
   };
 
   return (
     <tr>
       {isEditMode ? (
-        <>
-          <td>
-            <input
-              type="text"
-              placeholder="Name"
-              value={nameInput}
-              onChange={(event) => setNameInput(event.target.value)}
-            />
-          </td>
-          <td>
-            <input
-              type="number"
-              placeholder="Sell in"
-              value={sellInInput}
-              onChange={(event) => setSellInInput(Number(event.target.value))}
-            />
-          </td>
-          <td>
-            <input
-              type="number"
-              placeholder="Quality"
-              value={qualityInput}
-              onChange={(event) => setQualityInput(Number(event.target.value))}
-            />
-          </td>
-          <td>
-            <button onClick={handleSaveClick}>Save</button>
-            <button onClick={handleCancelClick}>Cancel</button>
-          </td>
-        </>
+        <EditModeRow
+          item={item}
+          onSaveClick={handleSaveClick}
+          onCancelClick={handleCancelClick}
+        />
       ) : (
-        <>
-          <td>{name}</td>
-          <td>{sellIn}</td>
-          <td>{quality}</td>
-          <td>
-            <button onClick={() => setIsEditMode(true)}>Edit</button>
-            <button onClick={() => onRemove?.(id)}>Remove</button>
-          </td>
-        </>
+        <ViewModeRow
+          item={item}
+          onEditClick={() => setIsEditMode(true)}
+          onRemoveClick={(id) => onRemove?.(id)}
+        />
       )}
+    </tr>
+  );
+};
+
+interface ViewModeRowProps {
+  item: Item;
+  onEditClick?: () => void;
+  onRemoveClick?: (id: Item["id"]) => void;
+}
+
+const ViewModeRow = ({
+  item,
+  onEditClick,
+  onRemoveClick,
+}: ViewModeRowProps) => (
+  <tr>
+    <td>{item.name}</td>
+    <td>{item.sellIn}</td>
+    <td>{item.quality}</td>
+    <td>
+      <button onClick={() => onEditClick?.()}>Edit</button>
+      <button onClick={() => onRemoveClick?.(item.id)}>Remove</button>
+    </td>
+  </tr>
+);
+
+interface EditModeRowProps {
+  item: Item;
+  onSaveClick?: (item: Item) => void;
+  onCancelClick?: () => void;
+}
+
+const EditModeRow = ({
+  item,
+  onSaveClick,
+  onCancelClick,
+}: EditModeRowProps) => {
+  const [nameInput, setNameInput] = useState(item.name);
+  const [sellInInput, setSellInInput] = useState(item.sellIn);
+  const [qualityInput, setQualityInput] = useState(item.quality);
+
+  return (
+    <tr>
+      <td>
+        <input
+          type="text"
+          placeholder="Name"
+          value={nameInput}
+          onChange={(event) => setNameInput(event.target.value)}
+        />
+      </td>
+      <td>
+        <input
+          type="number"
+          placeholder="Sell in"
+          value={sellInInput}
+          onChange={(event) => setSellInInput(Number(event.target.value))}
+        />
+      </td>
+      <td>
+        <input
+          type="number"
+          placeholder="Quality"
+          value={qualityInput}
+          min={0}
+          max={80}
+          onChange={(event) =>
+            setQualityInput(clamp(Number(event.target.value), 0, 80))
+          }
+        />
+      </td>
+      <td>
+        <button
+          onClick={() =>
+            onSaveClick?.(
+              new Item(nameInput, sellInInput, qualityInput, item.id)
+            )
+          }
+        >
+          Save
+        </button>
+        <button onClick={() => onCancelClick?.()}>Cancel</button>
+      </td>
     </tr>
   );
 };

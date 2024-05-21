@@ -1,3 +1,5 @@
+import { nanoid } from "nanoid";
+
 export class Item {
   id: string;
   name: string;
@@ -5,12 +7,12 @@ export class Item {
   quality: number;
 
   constructor(
-    id: Item["id"],
     name: Item["name"],
     sellIn: Item["sellIn"],
-    quality: Item["quality"]
+    quality: Item["quality"],
+    id?: Item["id"]
   ) {
-    this.id = id;
+    this.id = id ?? nanoid();
     this.name = name;
     this.sellIn = sellIn;
     this.quality = quality;

@@ -65,17 +65,11 @@ export class GildedRose {
   private updateBackstagePassesQuality(item: Item) {
     if (item.sellIn > 10) {
       item.quality = Math.min(item.quality + 1, MAX_QUALITY);
-    }
-
-    if (item.sellIn > 5 && item.sellIn <= 10) {
+    } else if (item.sellIn > 5) {
       item.quality = Math.min(item.quality + 2, MAX_QUALITY);
-    }
-
-    if (item.sellIn > 0 && item.sellIn <= 5) {
+    } else if (item.sellIn > 0) {
       item.quality = Math.min(item.quality + 3, MAX_QUALITY);
-    }
-
-    if (item.sellIn <= 0) {
+    } else {
       item.quality = 0;
     }
   }

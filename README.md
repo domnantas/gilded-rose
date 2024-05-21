@@ -163,7 +163,7 @@ There is a requirement for a new `Conjured` item feature. I have added tests whi
 
 ### CRUD UI
 
-I have implemented a simple CRUD UI for inventory items. I had to modify the `Item` class by adding an `id`, because Update and Delete operations require a unique reference to the affected item.
+The Gilded Rose kata does not specify any frontend requirements. However, the task description noted the task should be completed using React. Therefore, I have implemented a simple CRUD UI. I had to modify the `Item` class by adding an `id`, because Update and Delete operations require a unique reference to the affected item.
 
 ### Deployment
 

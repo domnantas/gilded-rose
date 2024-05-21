@@ -90,7 +90,8 @@ According to the requirements, I have prepared the following plan:
 
 - [x] Fix type errors in the current code
 - [x] Write unit tests for current code to gain a better understanding of the requirements and prepare for the refactoring
-- [ ] Refactor the code according to the principles above
+- [x] Refactor the code according to the principles above
+- [ ] Implement the new `Conjured` item feature
 - [ ] Create a CRUD UI for the inventory using React
 - [ ] Add e2e tests
 - [ ] Deploy the project
@@ -153,3 +154,5 @@ The glaring issue with the code is that the logic is deeply nested and difficult
 Next, `updateQuality` name violates single responsibility principle, because it is not only updates the quality, but also decrements the `sellIn` value. I have renamed it to `advanceDay` to better describe its purpose. I have also extracted each item quality update to separate methods. During this I have discovered an edge case – when Aged Brie had a `quality` of 49 and `sellIn` of 0 or lower, its quality would increase to 51. I have added a unit test for this case and fixed it.
 
 I have replaced `for` with `forEach` and `if` statements with `switch`. I find it a bit easier to understand. I have then extracted clamping functions to methods and special item names to constants.
+
+At this point I believe the refactoring is complete, the code is more readable, it is well-tested, and easy to extend.
